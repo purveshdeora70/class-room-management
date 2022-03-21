@@ -1,0 +1,53 @@
+<section class="session1">
+    <div class="container ">
+        <div class="arrow-position">
+            <a href="/tutor"><i class='fas fa-angle-double-left ' style='font-size:25px'></i></a>
+        </div>
+        <div style="row">
+            <div class="upload-button-wrap input-group ">
+                <form id="form-asgmt" class="upload-button-wrap" action="/tutor/add-assignment" method="POST" enctype="multipart/form-data" style="padding-left: 30%; width:100%;">
+                    <label for="">Topic</label>
+                <input  type="text" name="topic" style="display: block; height: 2.5rem;border: 3px solid;border-color: #1a015129;" placeholder="Topic" required><br>
+                <label class="upload-button" for="upload-asgmt">File</label><br>
+                <input name="doc" id="upload-asgmt" type="file" accept=".pdf" required>
+                 <textarea style="display: block; ;border: 3px solid;border-color: #1a015129;" name="about" id=""
+                        cols="30" rows="10" required>About</textarea>
+                    <br>
+                <input type="submit" class="save100-form-btn ml-5" value="save">
+                </form>
+            </div>
+        </div>
+        <hr>
+        <br>
+        <br>
+
+        <div>
+            <h2 class="h2-table">Assignments</h2>
+        </div>
+
+        <ul class="responsive-table table-num">
+            <li class="table-header">
+                <div class="col col-1">No</div>
+                <div class="col col-2" style="max-width: 35%;">Topic</div>
+                <div class="col col-3" style="max-width: 35%;">Document</div>
+                <div class="col col-4" style="max-width: 20%;">Delete</div>
+            </li>
+            {{#each data}}
+            <li class="table-row" id="num">
+                <div class="col col-1" data-label="No">
+                    <p class="sd-name" id=""></p>
+                </div>
+                <div class="col col-2" data-label="Name" style="max-width: 35%;">
+                    <a href="" class="sd-name">{{this.topic}}</a>
+                </div>
+                <div class="col col-3" data-label="" style="max-width: 35%;"><a href="/tutor/doc/{{this._id}}"><i class="fa fa-file-pdf-o"></i></a></div>
+                <div class="col col-4" data-label="" style="max-width: 20%;">
+                    <a id="note-add-btn" onclick="addClicked()" href="/tutor/set-task-assignment/{{this._id}}" class="btn btn-primary">Add</a>
+                    <a href="/tutor/delete-assignment/{{this._id}}"
+                        onclick="return confirm('Do you want delete {{this.topic}}?')"><i class='fas fa-trash '></i></a>
+                </div>
+            </li>
+            {{/each}}
+        </ul>
+    </div>
+</section>
